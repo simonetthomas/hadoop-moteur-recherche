@@ -78,7 +78,45 @@ public class WordDocKey implements WritableComparable<WordDocKey>{
 		if (compare != 0) {
 			return compare;
 		}
-		return this.getWord().compareTo(o.getWord());
+		compare = this.getWord().compareTo(o.getWord());
+		return compare;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((filePathString == null) ? 0 : filePathString.hashCode());
+		result = prime * result + ((word == null) ? 0 : word.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WordDocKey other = (WordDocKey) obj;
+		if (filePathString == null) {
+			if (other.filePathString != null)
+				return false;
+		} else if (!filePathString.equals(other.filePathString))
+			return false;
+		if (word == null) {
+			if (other.word != null)
+				return false;
+		} else if (!word.equals(other.word))
+			return false;
+		return true;
 	}
 
 }
